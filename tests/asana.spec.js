@@ -1,9 +1,12 @@
 const { test } = require('@playwright/test');
 
 require('./fixture');
+// I think this is a good solution for multiple tests using the same login information. More tests can be added easily.
+// I could also add fixtures for staging and production environments, using different logins and URLs.
 
 test('Test Case 1', async ({ page }) => {
   const column = page.locator('h2.To.Do >> text="To Do"');
+  // Find the correct column and then assert items are in the column
   await column.first().getByText('Implement user authentication').isVisible();
   await column.first().getByText('Feature').isVisible();
   await column.first().getByText('High Priority').isVisible();
